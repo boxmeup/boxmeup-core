@@ -14,10 +14,7 @@ trait SlugifyTrait {
 	 * @return string
 	 */
 	public function slugify($attributeName, $postfix = '') {
-		if (empty($this->slugifyInstance)) {
-			$this->slugifyInstance = new Slugify();
-		}
-		return $this->slugifyInstance->slugify($this[$attributeName]) . $postfix;
+		return (new Slugify())->slugify($this[$attributeName]) . $postfix;
 	}
 
 }
