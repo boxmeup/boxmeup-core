@@ -3,7 +3,7 @@
 namespace Boxmeup\Domain;
 
 abstract class Entity implements EntityInterface {
-	use Accessable, Iteratable;
+	use Accessable, Iteratable, EntityTrait;
 
 	/**
 	 * Data container.
@@ -12,8 +12,22 @@ abstract class Entity implements EntityInterface {
 	 */
 	protected $data = [];
 
+	/**
+	 * Construct.
+	 *
+	 * @param array $initialData
+	 */
 	public function __construct(array $initialData = []) {
-		$this->data = $initialData;
+		$this->initialize($initialData);
+	}
+
+	/**
+	 * Array representation of this entity.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		return $this->data;
 	}
 
 }

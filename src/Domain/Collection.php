@@ -3,7 +3,7 @@
 namespace Boxmeup\Domain;
 
 abstract class Collection implements CollectionInterface {
-	use Iteratable, Countable;
+	use Iteratable, Countable, CollectionTrait;
 
 	/**
 	 * Array of Entities.
@@ -12,30 +12,4 @@ abstract class Collection implements CollectionInterface {
 	 */
 	protected $entries = [];
 
-	/**
-	 * Array representation.
-	 *
-	 * @return array
-	 */
-	public function toArray() {
-		return $this->entries;
-	}
-
-	/**
-	 * Determine if this collection is empty.
-	 *
-	 * @return boolean
-	 */
-	public function isEmpty() {
-		return empty($this->entries);
-	}
-
-	/**
-	 * Get a reference to the items array for this collection.
-	 *
-	 * @return array
-	 */
-	protected function &getItems() {
-		return $this->entries;
-	}
 }
