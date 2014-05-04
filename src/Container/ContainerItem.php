@@ -1,0 +1,40 @@
+<?php
+
+namespace Boxmeup\Container;
+
+use \Boxmeup\Domain\Entity,
+	\Boxmeup\Schema\SchemaValidatable,
+	\Boxmeup\Schema\DefaultEntitySchemaValidate;
+
+class ContainerItem extends Entity implements SchemaValidatable {
+	use DefaultEntitySchemaValidate;
+
+	/**
+	 * Initialization of container item entity.
+	 *
+	 * @param array $initialData
+	 * @return void
+	 * @todo implement container object check
+	 * @throws Boxmeup\Exception\InvalidSchemaException
+	 */
+	public function initialize(array $initialData = []) {
+		if (!array_key_exists('quantity', $initialData)) {
+			$initialData['quantity'] = 1;
+		}
+		$initialData['quantity'] = abs($initialData['quantity']);
+		parent::initialize($initialData);
+		$this->verifyRequiredSchema();
+	}
+
+	/**
+	 * Schema for containers.
+	 *
+	 * @return array
+	 */
+	public function getRequiredSchema() {
+		return [
+			'container', 'body', 'quantity'
+		];
+	}
+
+}
