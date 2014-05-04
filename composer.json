@@ -1,0 +1,27 @@
+{
+    "name": "cjsaylor/boxmeup-core",
+    "description": "Core library for Boxmeup.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Saylor",
+            "email": "cjsaylor@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boxmeup\\": "src/",
+            "Boxmeup\\Test\\": "tests/"
+        }
+    }
+}
