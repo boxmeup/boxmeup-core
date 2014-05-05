@@ -2,12 +2,9 @@
 
 namespace Boxmeup\Test\Domain;
 
-use \Boxmeup\Domain\ReadAccessable;
+use \Boxmeup\Domain\ValueObject;
 
-class TestValueObject implements \ArrayAccess {
-	use ReadAccessable;
-
-	protected $data = [];
+class TestValueObject extends ValueObject {
 
 	public function __construct($value) {
 		$this->data['value'] = $value;
