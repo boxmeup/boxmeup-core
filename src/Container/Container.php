@@ -19,11 +19,11 @@ class Container extends CollectionEntity implements SchemaValidatable {
 	 * @throws Boxmeup\Exception\InvalidSchemaException
 	 */
 	public function initialize(array $initialData = []) {
-		$this->verifyRequiredSchema(array_keys($initialData));
 		parent::initialize($initialData);
 		if (empty($this['slug'])) {
 			$this['slug'] = $this->slugify('name');
 		}
+		$this->verifyRequiredSchema();
 	}
 
 	/**
