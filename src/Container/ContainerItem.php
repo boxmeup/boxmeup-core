@@ -2,7 +2,7 @@
 
 namespace Boxmeup\Container;
 
-use \Boxmeup\Domain\Entity,
+use \Cjsaylor\Domain\Entity,
 	\Boxmeup\Schema\SchemaValidatable,
 	\Boxmeup\Schema\DefaultEntitySchemaValidate;
 
@@ -14,7 +14,6 @@ class ContainerItem extends Entity implements SchemaValidatable {
 	 *
 	 * @param array $initialData
 	 * @return void
-	 * @todo implement container object check
 	 * @throws Boxmeup\Exception\InvalidSchemaException
 	 */
 	public function initialize(array $initialData = []) {

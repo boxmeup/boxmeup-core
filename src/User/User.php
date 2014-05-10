@@ -2,7 +2,7 @@
 
 namespace Boxmeup\User;
 
-use \Boxmeup\Domain\Entity,
+use \Cjsaylor\Domain\Entity,
 	\Boxmeup\Schema\SchemaValidatable,
 	\Boxmeup\Schema\DefaultEntitySchemaValidate,
 	\Boxmeup\Value\Email;

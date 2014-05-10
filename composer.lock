@@ -3,8 +3,48 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c03cdeb0dc94f719f871de39cfcfa338",
+    "hash": "e5f1d933eec1cc49745ef71baceb202b",
     "packages": [
+        {
+            "name": "cjsaylor/libdomain",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cjsaylor/libdomain.git",
+                "reference": "ef50224f4bf158ce3f732433c8f2021f556f8cd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cjsaylor/libdomain/zipball/ef50224f4bf158ce3f732433c8f2021f556f8cd2",
+                "reference": "ef50224f4bf158ce3f732433c8f2021f556f8cd2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cjsaylor\\Domain\\": "src/",
+                    "Cjsaylor\\Test\\Domain\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Saylor",
+                    "email": "cjsaylor@gmail.com"
+                }
+            ],
+            "description": "PHP classes and traits to facilitate domain driven design.",
+            "time": "2014-05-10 16:59:10"
+        },
         {
             "name": "cocur/slugify",
             "version": "v0.8",

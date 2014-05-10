@@ -11,6 +11,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4",
+        "cjsaylor/libdomain": "~1.0.0",
         "cocur/slugify": "v0.8"
     },
     "require-dev": {

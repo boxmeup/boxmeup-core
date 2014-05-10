@@ -2,7 +2,7 @@
 
 namespace Boxmeup\Container;
 
-use \Boxmeup\Domain\CollectionEntity,
+use \Cjsaylor\Domain\CollectionEntity,
 	\Boxmeup\Schema\SchemaValidatable,
 	\Boxmeup\Schema\DefaultEntitySchemaValidate,
 	\Boxmeup\Util\SlugifyTrait;
