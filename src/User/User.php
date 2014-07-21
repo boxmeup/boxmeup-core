@@ -52,4 +52,15 @@ class User extends Entity implements SchemaValidatable {
 		];
 	}
 
+	/**
+	 * Array representation of the user.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		$out = parent::toArray();
+		$out['email'] = (string)$out['email'];
+		return $out;
+	}
+
 } 
