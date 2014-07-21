@@ -12,4 +12,10 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals('test@test.com', $user['email']);
 	}
 
+	public function testToArray() {
+		$user = new User(['email' => 'test@test.com', 'id' => '1']);
+		$result = $user->toArray();
+		$this->assertEquals(['email' => 'test@test.com', 'id' => '1', 'active' => true], $result);
+	}
+
 }
