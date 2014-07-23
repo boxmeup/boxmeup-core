@@ -18,4 +18,11 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(['email' => 'test@test.com', 'id' => '1', 'active' => true], $result);
 	}
 
+	public function testEmailSetter() {
+		$user = new User(['email' => 'test@test.com']);
+		$user['email'] = 'test2@test.com';
+		$this->assertInstanceOf('\Boxmeup\Value\Email', $user['email']);
+		$this->assertEquals('test2@test.com', $user['email']);
+	}
+
 }

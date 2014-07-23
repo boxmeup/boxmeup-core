@@ -31,6 +31,18 @@ class User extends Entity implements SchemaValidatable {
 	}
 
 	/**
+	 * Setter callback to message email into email object.
+	 *
+	 * @param [type] $email [description]
+	 */
+	public function setEmail($email) {
+		if (is_string($email)) {
+			$email = new Email($email);
+		}
+		$this->data['email'] = $email;
+	}
+
+	/**
 	 * Verify schema.
 	 *
 	 * @param array $data
