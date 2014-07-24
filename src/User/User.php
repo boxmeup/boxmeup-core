@@ -23,8 +23,8 @@ class User extends Entity implements SchemaValidatable {
 		if (!empty($initialData['email']) && is_string($initialData['email'])) {
 			$initialData['email'] = new Email($initialData['email']);
 		}
-		if (!array_key_exists('active', $initialData)) {
-			$initialData['active'] = true;
+		if (!array_key_exists('is_active', $initialData)) {
+			$initialData['is_active'] = true;
 		}
 		parent::initialize($initialData);
 		$this->verifyRequiredSchema();
