@@ -13,6 +13,13 @@ class User extends Entity implements SchemaValidatable {
 	}
 
 	/**
+	 * A list of allowable fields to be updated.
+	 * 
+	 * @var array
+	 */
+	protected $updatableFields = ['email', 'password', 'modified'];
+
+	/**
 	 * Initialization of container item entity.
 	 *
 	 * @param array $initialData
@@ -62,6 +69,15 @@ class User extends Entity implements SchemaValidatable {
 		return [
 			'email'
 		];
+	}
+
+	/**
+	 * Get a list of fields allowed to be updated.
+	 *
+	 * @return array
+	 */
+	public function getUpdatableFields() {
+		return $this->updatableFields;
 	}
 
 	/**
