@@ -1,22 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "e5f1d933eec1cc49745ef71baceb202b",
+    "hash": "607a7966dd028d82e68655244d36cae4",
     "packages": [
         {
             "name": "cjsaylor/libdomain",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cjsaylor/libdomain.git",
-                "reference": "62d13f1198821616c9f9e038d5e5e5adc099b614"
+                "reference": "8a5de37754e8bcb07a32f7124eff925465567ec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cjsaylor/libdomain/zipball/62d13f1198821616c9f9e038d5e5e5adc099b614",
-                "reference": "62d13f1198821616c9f9e038d5e5e5adc099b614",
+                "url": "https://api.github.com/repos/cjsaylor/libdomain/zipball/8a5de37754e8bcb07a32f7124eff925465567ec4",
+                "reference": "8a5de37754e8bcb07a32f7124eff925465567ec4",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +44,7 @@
                 }
             ],
             "description": "PHP classes and traits to facilitate domain driven design.",
-            "time": "2014-05-11 00:42:39"
+            "time": "2014-07-27 20:41:38"
         },
         {
             "name": "cocur/slugify",
@@ -104,16 +105,16 @@
     "packages-dev": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.6",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "bccecf50645068b44f49a84009e2a0499a500b99"
+                "reference": "ed8ac99ce38c3fd134128c898f7ca74665abef7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/bccecf50645068b44f49a84009e2a0499a500b99",
-                "reference": "bccecf50645068b44f49a84009e2a0499a500b99",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ed8ac99ce38c3fd134128c898f7ca74665abef7f",
+                "reference": "ed8ac99ce38c3fd134128c898f7ca74665abef7f",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +166,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-04-30 09:01:21"
+            "time": "2014-06-29 08:14:40"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -425,16 +426,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.0.5",
+            "version": "2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "3697daa12ab57b2bfc27b734ab963142f27b9159"
+                "reference": "e60bb929c50ae4237aaf680a4f6773f4ee17f0a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/3697daa12ab57b2bfc27b734ab963142f27b9159",
-                "reference": "3697daa12ab57b2bfc27b734ab963142f27b9159",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/e60bb929c50ae4237aaf680a4f6773f4ee17f0a2",
+                "reference": "e60bb929c50ae4237aaf680a4f6773f4ee17f0a2",
                 "shasum": ""
             },
             "require": {
@@ -478,7 +479,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-04-16 14:50:10"
+            "time": "2014-06-12 07:19:48"
         },
         {
             "name": "sebastian/diff",
@@ -684,17 +685,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.4.4",
+            "version": "v2.5.2",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "65539ecde838f9c0d18b006b2101e3deb4b5c9ff"
+                "reference": "f868ecdbcc0276b6158dfbf08b9e98ce07f014e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/65539ecde838f9c0d18b006b2101e3deb4b5c9ff",
-                "reference": "65539ecde838f9c0d18b006b2101e3deb4b5c9ff",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/f868ecdbcc0276b6158dfbf08b9e98ce07f014e1",
+                "reference": "f868ecdbcc0276b6158dfbf08b9e98ce07f014e1",
                 "shasum": ""
             },
             "require": {
@@ -703,7 +704,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -729,7 +730,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-18 20:37:09"
+            "time": "2014-07-09 09:05:48"
         }
     ],
     "aliases": [
