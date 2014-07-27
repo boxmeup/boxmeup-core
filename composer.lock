@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cjsaylor/libdomain",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cjsaylor/libdomain.git",
-                "reference": "8a5de37754e8bcb07a32f7124eff925465567ec4"
+                "reference": "c92c58e59d17d006618ba08ed33641c605b7ee2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cjsaylor/libdomain/zipball/8a5de37754e8bcb07a32f7124eff925465567ec4",
-                "reference": "8a5de37754e8bcb07a32f7124eff925465567ec4",
+                "url": "https://api.github.com/repos/cjsaylor/libdomain/zipball/c92c58e59d17d006618ba08ed33641c605b7ee2b",
+                "reference": "c92c58e59d17d006618ba08ed33641c605b7ee2b",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 }
             ],
             "description": "PHP classes and traits to facilitate domain driven design.",
-            "time": "2014-07-27 20:41:38"
+            "time": "2014-07-27 21:08:58"
         },
         {
             "name": "cocur/slugify",
