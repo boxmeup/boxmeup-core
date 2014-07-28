@@ -10,13 +10,6 @@ use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 class Email extends ValueObject {
 
 	/**
-	 * Email Address.
-	 *
-	 * @var string
-	 */
-	protected $address;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param string $address
