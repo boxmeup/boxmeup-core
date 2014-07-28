@@ -2,11 +2,12 @@
 
 namespace Boxmeup\Value;
 
+use Cjsaylor\Domain\ValueObject;
 use Boxmeup\Exception\InvalidParameterException;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 
-class Email {
+class Email extends ValueObject {
 
 	/**
 	 * Email Address.
