@@ -9,7 +9,10 @@ class Specification
 {
 
 	protected $limits = [
-		Role::TYPE_BASIC => 10
+		Role::TYPE_BASIC => [
+			'containers' => 15,
+			'items' => 60
+		]
 	];
 
 	/**
@@ -19,7 +22,17 @@ class Specification
 	 * @return integer
 	 */
 	public function getLimit(User $user) {
-		return $this->limits[(string)$user['role']];
+		return $this->limits[(string)$user['role']]['containers'];
+	}
+
+	/**
+	 * Get the number of items a user is allowed to have.
+	 *
+	 * @param Boxmeup\User\User $user
+	 * @return integer
+	 */
+	public function getItemLimit(User $user) {
+		return $this->limits[(string)$user['role']]['items'];
 	}
 
 	/**
