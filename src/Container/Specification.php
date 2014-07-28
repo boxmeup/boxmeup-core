@@ -4,9 +4,11 @@ namespace Boxmeup\Container;
 
 use Boxmeup\User\User;
 use Boxmeup\Value\Role;
+use Boxmeup\Util\FactoryTrait;
 
 class Specification
 {
+	use FactoryTrait;
 
 	protected $limits = [
 		Role::TYPE_BASIC => [
@@ -33,14 +35,5 @@ class Specification
 	 */
 	public function getItemLimit(User $user) {
 		return $this->limits[(string)$user['role']]['items'];
-	}
-
-	/**
-	 * Statically create a specification instance.
-	 *
-	 * @return Boxmeup\Container\Specification
-	 */
-	public static function factory() {
-		return new static();
 	}
 }
