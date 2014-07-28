@@ -6,18 +6,14 @@ use Cjsaylor\Domain\ValueObject;
 
 class Role extends ValueObject {
 
-	const TYPE_BASIC = 0;
+	const TYPE_BASIC = 'basic';
 
-	protected $mapping = [
-		self::TYPE_BASIC => 'basic'
-	];
-
-	public function __construct($value) {
+	public function __construct($value = self::TYPE_BASIC) {
 		$this->data['value'] = $value;
 	}
 
 	public function __toString() {
-		return $this->mapping[$this->data['value']];
+		return $this->data['value'];
 	}
 
 }
