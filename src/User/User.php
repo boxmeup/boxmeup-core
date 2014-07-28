@@ -5,7 +5,8 @@ namespace Boxmeup\User;
 use \Cjsaylor\Domain\Entity,
 	\Boxmeup\Schema\SchemaValidatable,
 	\Boxmeup\Schema\DefaultEntitySchemaValidate,
-	\Boxmeup\Value\Email;
+	\Boxmeup\Value\Email,
+	\Boxmeup\Value\Role;
 
 class User extends Entity implements SchemaValidatable {
 	use DefaultEntitySchemaValidate {
@@ -33,6 +34,7 @@ class User extends Entity implements SchemaValidatable {
 		if (!array_key_exists('is_active', $initialData)) {
 			$initialData['is_active'] = true;
 		}
+		$initialData['role'] = new Role(isset($initialData['role']) ? $initialData['role'] : Role::TYPE_BASIC);
 		parent::initialize($initialData);
 		$this->verifyRequiredSchema();
 	}
@@ -40,7 +42,7 @@ class User extends Entity implements SchemaValidatable {
 	/**
 	 * Setter callback to message email into email object.
 	 *
-	 * @param [type] $email [description]
+	 * @param mixed $email
 	 */
 	public function setEmail($email) {
 		if (is_string($email)) {
@@ -88,6 +90,7 @@ class User extends Entity implements SchemaValidatable {
 	public function toArray() {
 		$out = parent::toArray();
 		$out['email'] = (string)$out['email'];
+		$out['role'] = (string)$out['role'];
 		return $out;
 	}
 

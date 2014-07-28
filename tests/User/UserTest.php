@@ -19,6 +19,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 			[
 				'id' => 1,
 				'email' => 'test@test.com',
+				'role' => 'basic',
 				'password' => 'somehash',
 				'is_active' => true,
 				'reset_password' => false,
