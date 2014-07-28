@@ -12,6 +12,7 @@
     "require": {
         "php": ">=5.4",
         "cjsaylor/libdomain": "~1.0.0",
+        "symfony/validator": "~2.5.2",
         "cocur/slugify": "v0.8"
     },
     "require-dev": {
