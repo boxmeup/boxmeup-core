@@ -4,5 +4,7 @@ php:
 
 before_script:
   - composer install --dev
+  - mysql -e 'CREATE DATABASE boxmeup_test;'
+  - cat contrib/schema.sql | mysql boxmeup_test
 
-script: ./bin/phpunit --coverage-text
+script: ./bin/phpunit --coverage-text --configuration phpunit.travis.xml
