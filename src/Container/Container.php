@@ -33,7 +33,6 @@ class Container extends CollectionEntity implements SchemaValidatable {
 	 * @return void
 	 */
 	public function add(ContainerItem $item) {
-		$item['container'] = $this;
 		$this->getItems()[] = $item;
 	}
 

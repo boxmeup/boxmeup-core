@@ -29,16 +29,4 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(2, $container->getItemCount());
 	}
 
-	public function testSelfReference() {
-		$container = new Container([
-			'name' => 'Test Container 1',
-			'user' => 'UserReference', //@todo replace with user entity
-		]);
-		$item = new ContainerItem([
-			'body' => 'Test Item 1'
-		]);
-		$container->add($item);
-		$this->assertEquals($container, $item['container']);
-	}
-
 }
