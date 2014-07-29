@@ -26,7 +26,7 @@ class ContainerItemRepository
 	 * @param Boxmeup\User\User $user
 	 * @return integer
 	 */
-	public function getTotalItemsByUser(UserTransform $user) {
+	public function getTotalItemsByUser(User $user) {
 		$stmt = $this->db->executeQuery(
 			'
 				select count(*) as total from container_items ci
@@ -44,7 +44,7 @@ class ContainerItemRepository
 	 * @param Boxmeup\User\User $user
 	 * @return Boxmeup\Container\Container
 	 */
-	public function getRecentItemsByUser(UserTransform $user) {
+	public function getRecentItemsByUser(User $user) {
 		$parent = new Container(['name' => 'Recent']);
 		$stmt = $this->db->executeQuery(
 			'
