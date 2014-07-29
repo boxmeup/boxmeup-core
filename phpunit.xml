@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpunit backupGlobals="false"
 		 backupStaticAttributes="false"
-		 bootstrap="vendor/autoload.php"
+		 bootstrap="tests/bootstrap.php"
 		 convertErrorsToExceptions="true"
 		 convertNoticesToExceptions="true"
 		 convertWarningsToExceptions="true"
@@ -24,4 +24,10 @@
 			<directory>src/</directory>
 		</whitelist>
 	</filter>
+	<php>
+		<var name="host" value="localhost" />
+		<var name="user" value="root" />
+		<var name="password" value="root" />
+		<var name="name" value="boxmeup_test" />
+	</php>
 </phpunit>
