@@ -83,6 +83,15 @@ class User extends Entity implements SchemaValidatable {
 	}
 
 	/**
+	 * String representation.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this['email'];
+	}
+
+	/**
 	 * Array representation of the user.
 	 *
 	 * @return array
