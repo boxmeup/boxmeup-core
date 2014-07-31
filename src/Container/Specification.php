@@ -20,7 +20,7 @@ class Specification
 	/**
 	 * Get the number of containers a user is allowed to have.
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return integer
 	 */
 	public function getLimit(User $user) {
@@ -30,7 +30,7 @@ class Specification
 	/**
 	 * Get the number of items a user is allowed to have.
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return integer
 	 */
 	public function getItemLimit(User $user) {

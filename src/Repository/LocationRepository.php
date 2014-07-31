@@ -18,7 +18,7 @@ class LocationRepository
 	/**
 	 * Retrieve the total number of locations a user currently has.
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return integer
 	 */
 	public function getTotalLocationsByUser(User $user) {

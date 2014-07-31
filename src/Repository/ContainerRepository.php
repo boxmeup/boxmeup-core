@@ -29,7 +29,7 @@ class ContainerRepository
 	 * The results will contain data which will be an instance of Boxmeup\Container\ContainerCollection
 	 * and total which is the total number of containers available.
 	 *
-	 * @param  Boxmeup\User\User $user
+	 * @param  User $user
 	 * @param  integer $offset
 	 * @return array
 	 */
@@ -56,7 +56,7 @@ class ContainerRepository
 	/**
 	 * Get the total number of containers
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return integer
 	 */
 	public function getTotalContainersByUser(User $user) {
@@ -70,8 +70,7 @@ class ContainerRepository
 	/**
 	 * Prepares a statement for querying a list of containers.
 	 *
-	 * @param boolean $aggregate Should return the aggregate results
-	 * @return Doctrine\DBAL\Statement
+	 * @return \Doctrine\DBAL\Statement
 	 */
 	protected function getListStatement(array $options = []) {
 		$sql = 'select %s from containers where user_id = :user_id';

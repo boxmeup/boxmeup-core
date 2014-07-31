@@ -28,7 +28,7 @@ class ContainerItem extends Entity implements SchemaValidatable {
 	/**
 	 * Schema for containers items.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRequiredSchema() {
 		return [

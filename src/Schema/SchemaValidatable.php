@@ -7,7 +7,7 @@ interface SchemaValidatable {
 	/**
 	 * Array of keys required for this entity.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRequiredSchema();
 

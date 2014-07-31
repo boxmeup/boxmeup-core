@@ -29,7 +29,7 @@ class Container extends CollectionEntity implements SchemaValidatable {
 	/**
 	 * Add a ContainerItem to the Container collection.
 	 *
-	 * @param Boxmeup\Container\ContainerItem $item
+	 * @param ContainerItem $item
 	 * @return void
 	 */
 	public function add(ContainerItem $item) {
@@ -52,7 +52,7 @@ class Container extends CollectionEntity implements SchemaValidatable {
 	/**
 	 * Schema for containers.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRequiredSchema() {
 		return [

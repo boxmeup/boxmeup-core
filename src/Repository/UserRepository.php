@@ -18,7 +18,7 @@ class UserRepository
 	/**
 	 * Constructor.
 	 *
-	 * @param Doctrine\Dbal\Connection $db
+	 * @param Connection $db
 	 */
 	public function __construct(Connection $db) {
 		$this->db = $db;
@@ -28,7 +28,7 @@ class UserRepository
 	 * Retrieve a user by an ID.
 	 *
 	 * @param  string $id
-	 * @return Boxmeup\User\User
+	 * @return User
 	 * @throws Boxmeup\Exception\NotFoundException
 	 */
 	public function byId($id) {
@@ -43,7 +43,7 @@ class UserRepository
 	 * Retrieve a user by an email address.
 	 *
 	 * @param  string $email
-	 * @return Boxmeup\User\User
+	 * @return User
 	 * @throws Boxmeup\Exception\NotFoundException
 	 */
 	public function byEmail($email) {
@@ -57,7 +57,7 @@ class UserRepository
 	/**
 	 * Persist a user to storage.
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return mixed
 	 */
 	public function save(User $user) {
@@ -68,7 +68,7 @@ class UserRepository
 	 * Retrieve a user based on email or ID.
 	 *
 	 * @param string $value
-	 * @return Boxmeup\User\User
+	 * @return User
 	 * @throws Boxmeup\Exception\NotFoundException
 	 */
 	protected function byEmailOrId($value) {
@@ -87,7 +87,7 @@ class UserRepository
 	/**
 	 * Create a new user.
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return mixed
 	 */
 	protected function create(User $user) {

@@ -17,7 +17,7 @@ class Specification
 	/**
 	 * Get the limit of locations a user is allowed to have.
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return integer
 	 */
 	public function getLimit(User $user) {

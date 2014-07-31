@@ -23,7 +23,7 @@ class ContainerItemRepository
 	/**
 	 * Retrieve the total number of containers 
 	 *
-	 * @param Boxmeup\User\User $user
+	 * @param User $user
 	 * @return integer
 	 */
 	public function getTotalItemsByUser(User $user) {
@@ -41,8 +41,8 @@ class ContainerItemRepository
 	/**
 	 * Retrieve an generic container of recent items.
 	 *
-	 * @param Boxmeup\User\User $user
-	 * @return Boxmeup\Container\Container
+	 * @param User $user
+	 * @return Container
 	 */
 	public function getRecentItemsByUser(User $user) {
 		$parent = new Container(['name' => 'Recent']);
