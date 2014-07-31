@@ -2,29 +2,16 @@
 
 namespace Boxmeup\Container;
 
-use \Cjsaylor\Domain\CollectionEntity,
-	\Boxmeup\Schema\SchemaValidatable,
-	\Boxmeup\Schema\DefaultEntitySchemaValidate,
-	\Boxmeup\Util\SlugifyTrait;
+use Cjsaylor\Domain\CollectionEntity;
+use Boxmeup\Schema\SchemaValidatable;
+use Boxmeup\Schema\SchemaSerializable;
+use Boxmeup\Schema\DefaultEntitySchemaValidate;
+use Boxmeup\Util\SlugifyTrait;
+use Boxmeup\User\User;
+use Boxmeup\Location\Location;
 
-class Container extends CollectionEntity implements SchemaValidatable {
+class Container extends CollectionEntity implements SchemaValidatable, SchemaSerializable {
 	use DefaultEntitySchemaValidate, SlugifyTrait;
-
-	/**
-	 * Initialization of container collection entity.
-	 *
-	 * @param array $initialData
-	 * @return void
-	 * @todo implement user/location checks
-	 * @throws Boxmeup\Exception\InvalidSchemaException
-	 */
-	public function initialize(array $initialData = []) {
-		parent::initialize($initialData);
-		if (empty($this['slug'])) {
-			$this['slug'] = $this->slugify('name');
-		}
-		$this->verifyRequiredSchema();
-	}
 
 	/**
 	 * Add a ContainerItem to the Container collection.
@@ -34,6 +21,16 @@ class Container extends CollectionEntity implements SchemaValidatable {
 	 */
 	public function add(ContainerItem $item) {
 		$this->getItems()[] = $item;
+	}
+
+	/**
+	 * Handle slugifying the object if the name is set.
+	 *
+	 * @param string $name
+	 */
+	public function setName($name) {
+		$this->data['name'] = $name;
+		$this['slug'] = $this->slugify('name');
 	}
 
 	/**
@@ -50,7 +47,7 @@ class Container extends CollectionEntity implements SchemaValidatable {
 	}
 
 	/**
-	 * Schema for containers.
+	 * Required schema for containers.
 	 *
 	 * @return string[]
 	 */
@@ -58,6 +55,27 @@ class Container extends CollectionEntity implements SchemaValidatable {
 		return [
 			'user', 'name'
 		];
+	}
+
+	/**
+	 * Serialize to array specific to schema formatting.
+	 *
+	 * @return array
+	 * @todo implement location.
+	 */
+	public function schemaSerialize() {
+		$out = [
+			'id' => $this['id'],
+			'user_id' => $this['user'] instanceof User ? $this['user']['id'] : null,
+			'location_id' => $this['location'] instanceof Location ? $this['location']['id'] : null,
+			'name' => $this['name'],
+			'slug' => $this['slug'],
+			'container_item_count' => isset($this['container_item_count']) ? $this['container_item_count'] : 0,
+			'created' => isset($this['created']) ? $this['created'] : date('Y-m-d H:i:s')
+		];
+		$out['modified'] = isset($this['modified']) ? $this['modified'] : $out['created'];
+
+		return $out;
 	}
 
 }

@@ -68,6 +68,64 @@ class ContainerRepository
 	}
 
 	/**
+	 * Save a container to persistent storage.
+	 *
+	 * @param Container $container
+	 * @return void
+	 */
+	public function save(Container $container) {
+		$this->{$container['id'] ? 'update' : 'create'}($container);
+	}
+
+	/**
+	 * Create a container.
+	 *
+	 * @param Container $container
+	 * @return void
+	 */
+	protected function create(Container $container) {
+		$container['slug'] = $this->getUniqueSlug($container['slug']);
+		$this->db->insert('containers', $container->schemaSerialize());
+		$container['id'] = $this->db->lastInsertId();
+	}
+
+	/**
+	 * Update a container.
+	 * 
+	 * @param Container $container
+	 * @return void
+	 * @todo implement
+	 */
+	protected function update(Container $container) {
+		throw new \DomainException('Not implemented.');
+	}
+
+	/**
+	 * Get a unique slug value for provided slug.
+	 *
+	 * If the slug exists, it will return a new slug with a -\d with the maximum value of \d
+	 * in existance.
+	 *
+	 * @param string $slug
+	 * @return string
+	 */
+	protected function getUniqueSlug($slug) {
+		$incrementPosition = strlen($slug) + 2; // Mysql starts at the position of the first letter.
+		$exactWrap = sprintf('^%s$', $slug);
+		$incrementWrap = sprintf('^%s-[0-9]+$', $slug);
+		$stmt = $this->db->executeQuery(
+			'select max(substring(slug from ?)) as increment from containers where slug regexp ? or slug regexp ?',
+			[$incrementPosition, $exactWrap, $incrementWrap],
+			[\PDO::PARAM_INT]
+		);
+		$result = $stmt->fetch()['increment'];
+		if ($result === null) {
+			return $slug;
+		}
+		return $slug . '-' . ($result + 1);
+	}
+
+	/**
 	 * Prepares a statement for querying a list of containers.
 	 *
 	 * @return \Doctrine\DBAL\Statement
