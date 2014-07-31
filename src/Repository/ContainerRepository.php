@@ -6,6 +6,7 @@ use Doctrine\DBAL\Connection;
 use Boxmeup\User\User;
 use Boxmeup\Container\ContainerCollection;
 use Boxmeup\Container\Container;
+use Boxmeup\Container\Specification as ContainerSpecification;
 
 class ContainerRepository
 {
@@ -82,8 +83,12 @@ class ContainerRepository
 	 *
 	 * @param Container $container
 	 * @return void
+	 * @throws DomainException If the user is unable to create any more containers.
 	 */
 	protected function create(Container $container) {
+		if ($this->getTotalContainersByUser($container['user']) >= ContainerSpecification::factory()->getLimit($container['user'])) {
+			throw new \DomainException('Container limit reached.');
+		}
 		$container['slug'] = $this->getUniqueSlug($container['slug']);
 		$this->db->insert('containers', $container->schemaSerialize());
 		$container['id'] = $this->db->lastInsertId();

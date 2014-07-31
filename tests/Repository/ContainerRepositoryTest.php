@@ -6,6 +6,7 @@ use Boxmeup\Test\Fixture\MainFixture;
 use Boxmeup\Repository\UserRepository;
 use Boxmeup\Repository\ContainerRepository;
 use Boxmeup\Container\Container;
+use Boxmeup\Container\Specification as ContainerSpecification;
 
 class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
 {
@@ -55,10 +56,27 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
 	}
 
 	/**
+	 * @expectedException \DomainException
+	 */
+	public function testCreateLimit() {
+		$container = new Container([
+			'user' => $this->user->byId(1),
+			'name' => 'Test Maximum'
+		]);
+		$limit = ContainerSpecification::factory()->getLimit($container['user']);
+		while ($limit >= 0) {
+			$this->repo->save($container);
+			unset($container['id']);
+			$limit--;
+		}
+	}
+
+	/**
 	 * @expectedException DomainException
 	 */
 	public function testUpdate() {
 		$container = new Container(['id' => 1, 'name' => 'Test Update']);
 		$this->repo->save($container);
 	}
+
 }
