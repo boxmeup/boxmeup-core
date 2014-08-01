@@ -12,8 +12,10 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
 {
 	public function setUp() {
 		$this->fixture = MainFixture::factory()->getRecords();
-		$this->repo = new ContainerRepository(\Boxmeup\Test\getConnection());
 		$this->user = new UserRepository(\Boxmeup\Test\getConnection());
+		$this->repo = new ContainerRepository(\Boxmeup\Test\getConnection(), [
+			'user' => $this->user
+		]);
 		parent::setUp();
 	}
 
@@ -77,6 +79,14 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
 	public function testUpdate() {
 		$container = new Container(['id' => 1, 'name' => 'Test Update']);
 		$this->repo->save($container);
+	}
+
+	public function testGetBySlug() {
+		$container = $this->repo->getContainerBySlug('box-1');
+		$this->assertInstanceOf('Boxmeup\Container\Container', $container);
+		$this->assertEquals('box-1', $container['slug']);
+		$this->assertInstanceOf('Boxmeup\User\User', $container['user']);
+		$this->assertEquals(1, $container['user']['id']);
 	}
 
 }

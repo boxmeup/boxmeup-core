@@ -7,6 +7,7 @@ use Boxmeup\User\User;
 use Boxmeup\Container\ContainerCollection;
 use Boxmeup\Container\Container;
 use Boxmeup\Container\Specification as ContainerSpecification;
+use Boxmeup\Exception\NotFoundException;
 
 class ContainerRepository
 {
@@ -20,8 +21,9 @@ class ContainerRepository
 		'aggregate' => false
 	];
 
-	public function __construct(Connection $db) {
+	public function __construct(Connection $db, array $repos = []) {
 		$this->db = $db;
+		$this->repos = $repos;
 	}
 
 	/**
@@ -66,6 +68,35 @@ class ContainerRepository
 		$stmt->execute();
 
 		return (int)$stmt->fetch()['total'];
+	}
+
+	/**
+	 * Retrieve a container object based on slug.
+	 *
+	 * @param string $slug
+	 * @return Container
+	 * @todo Retrieve location objects
+	 * @todo Retrieve items contained (optional)
+	 * @throws \LogicException If the user repository is not attached as a dependency
+	 * @throws Boxmeup\Exception\NotFoundException
+	 */
+	public function getContainerBySlug($slug) {
+		if (!isset($this->repos['user']) || !$this->repos['user'] instanceof UserRepository) {
+			throw new \LogicException('User repository not located.');
+		}
+		$qb = $this->db->createQueryBuilder();
+		$qb
+			->select('c.*')
+			->from('containers', 'c')
+			->where('slug = ' . $qb->createPositionalParameter($slug));
+		$result = $qb->execute()->fetch();
+		if (empty($result)) {
+			throw new NotFoundException('Container not found.');
+		}
+		$container = new Container($qb->execute()->fetch());
+		$container['user'] = $this->repos['user']->byId($container['user_id']);
+
+		return $container;
 	}
 
 	/**
