@@ -110,6 +110,19 @@ class ContainerRepository
 	}
 
 	/**
+	 * Remove a container and all it's items.
+	 *
+	 * @param Container $container
+	 * @return void
+	 */
+	public function remove(Container $container) {
+		$this->db->transactional(function($db) use ($container) {
+			$db->delete('container_items', ['container_id' => $container['id']]);
+			$db->delete('containers', ['id' => $container['id']]);
+		});
+	}
+
+	/**
 	 * Create a container.
 	 *
 	 * @param Container $container

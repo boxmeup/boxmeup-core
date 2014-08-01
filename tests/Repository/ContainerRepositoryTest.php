@@ -89,4 +89,15 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
 		$this->assertEquals(1, $container['user']['id']);
 	}
 
+	/**
+	 * @todo Add tests covering the removal of items as well.
+	 */
+	public function testDelete() {
+		$container = $this->repo->getContainerBySlug('box-1');
+		$this->assertInstanceOf('Boxmeup\Container\Container', $container);
+		$this->repo->remove($container);
+		$this->setExpectedException('Boxmeup\Exception\NotFoundException');
+		$container = $this->repo->getContainerBySlug('box-1');
+	}
+
 }
