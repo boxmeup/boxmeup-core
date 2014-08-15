@@ -2,5 +2,6 @@
 
 namespace Boxmeup\Exception;
 
-class NotFoundException extends \RuntimeException {
+class NotFoundException extends \RuntimeException
+{
 }

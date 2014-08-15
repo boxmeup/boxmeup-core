@@ -4,15 +4,18 @@ namespace Boxmeup\Container;
 
 use Cjsaylor\Domain\Collection;
 
-class ContainerCollection extends Collection {
+class ContainerCollection extends Collection
+{
+    public function get($id)
+    {
+        $items = $this->getItems();
 
-	public function get($id) {
-		$items = $this->getItems();
-		return isset($items[$id]) ? $items[$id] : null;
-	}
+        return isset($items[$id]) ? $items[$id] : null;
+    }
 
-	public function add(Container $container) {
-		$this->getItems()[$container['id']] = $container; 
-	}
+    public function add(Container $container)
+    {
+        $this->getItems()[$container['id']] = $container;
+    }
 
 }

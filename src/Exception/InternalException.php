@@ -2,5 +2,6 @@
 
 namespace Boxmeup\Exception;
 
-class InternalException extends \Exception {
+class InternalException extends \Exception
+{
 }

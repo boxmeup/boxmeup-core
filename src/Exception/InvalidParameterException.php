@@ -2,5 +2,6 @@
 
 namespace Boxmeup\Exception;
 
-class InvalidParameterException extends \Exception {
+class InvalidParameterException extends \Exception
+{
 }
