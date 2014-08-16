@@ -2,8 +2,8 @@
 
 namespace Boxmeup\Test\Container;
 
-use \Boxmeup\Container\Container,
-    \Boxmeup\Container\ContainerItem;
+use \Boxmeup\Container\Container;
+use \Boxmeup\Container\ContainerItem;
 
 class ContainerTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,6 +15,16 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->assertSame('Test Container 1', $container['name']);
         $this->assertSame('test-container-1', $container['slug']);
+    }
+
+    public function testSlugNotOverride()
+    {
+        $container = new Container([
+            'name' => 'Test Container 1',
+            'slug' => 'test-container-2'
+        ]);
+        $this->assertSame('Test Container 1', $container['name']);
+        $this->assertSame('test-container-2', $container['slug']);
     }
 
     public function testItemCount()
@@ -30,5 +40,4 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         ]));
         $this->assertEquals(2, $container->getItemCount());
     }
-
 }

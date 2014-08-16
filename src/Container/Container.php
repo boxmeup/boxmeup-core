@@ -33,7 +33,9 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
     public function setName($name)
     {
         $this->data['name'] = $name;
-        $this['slug'] = $this->slugify('name');
+        if (empty($this['slug'])) {
+            $this->data['slug'] = $this->slugify('name');
+        }
     }
 
     /**
@@ -84,5 +86,4 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
 
         return $out;
     }
-
 }
