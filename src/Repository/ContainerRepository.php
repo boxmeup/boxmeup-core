@@ -13,6 +13,8 @@ class ContainerRepository
 {
     const LIMIT = 20;
 
+    const CONT_INCLUDE_ITEMS = 1;
+
     protected $db;
 
     protected $repos;
@@ -79,14 +81,22 @@ class ContainerRepository
 	 * @param string $slug
 	 * @return Container
 	 * @todo Retrieve location objects
-	 * @todo Retrieve items contained (optional)
 	 * @throws \LogicException If the user repository is not attached as a dependency
 	 * @throws Boxmeup\Exception\NotFoundException
 	 */
-    public function getContainerBySlug($slug)
+    public function getContainerBySlug($slug, $options = 0)
     {
         if (!isset($this->repos['user']) || !$this->repos['user'] instanceof UserRepository) {
             throw new \LogicException('User repository not located.');
+        }
+        if (
+            $options & static::CONT_INCLUDE_ITEMS &&
+            (
+                !isset($this->repos['container_item']) ||
+                !$this->repos['container_item'] instanceof ContainerItemRepository
+            )
+        ) {
+            throw new \LogicException('Container item repository not located.');
         }
         $qb = $this->db->createQueryBuilder();
         $qb
@@ -99,6 +109,9 @@ class ContainerRepository
         }
         $container = new Container($qb->execute()->fetch());
         $container['user'] = $this->repos['user']->byId($container['user_id']);
+        if ($options & static::CONT_INCLUDE_ITEMS) {
+            $container['total_items'] = $this->repos['container_item']->getItemsByContainer($container);
+        }
 
         return $container;
     }
@@ -199,5 +212,4 @@ class ContainerRepository
 
         return $this->db->prepare(sprintf($sql, 'count(*) as total'));
     }
-
 }

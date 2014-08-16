@@ -5,6 +5,7 @@ namespace Boxmeup\Test\Repository;
 use Boxmeup\Test\Fixture\MainFixture;
 use Boxmeup\Repository\UserRepository;
 use Boxmeup\Repository\ContainerRepository;
+use Boxmeup\Repository\ContainerItemRepository;
 use Boxmeup\Container\Container;
 use Boxmeup\Container\Specification as ContainerSpecification;
 
@@ -14,8 +15,10 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     {
         $this->fixture = MainFixture::factory()->getRecords();
         $this->user = new UserRepository(\Boxmeup\Test\getConnection());
+        $this->containerItem = new ContainerItemRepository(\Boxmeup\Test\getConnection());
         $this->repo = new ContainerRepository(\Boxmeup\Test\getConnection(), [
-            'user' => $this->user
+            'user' => $this->user,
+            'container_item' => $this->containerItem
         ]);
         parent::setUp();
     }
@@ -94,6 +97,7 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
         $this->assertEquals('box-1', $container['slug']);
         $this->assertInstanceOf('Boxmeup\User\User', $container['user']);
         $this->assertEquals(1, $container['user']['id']);
+        $this->assertCount(0, $container);
     }
 
     /**
@@ -108,4 +112,32 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
         $container = $this->repo->getContainerBySlug('box-1');
     }
 
+    /**
+     * @expectedException LogicException
+     */
+    public function testGetBySlugMissingDependency()
+    {
+        $repo = new ContainerRepository(\Boxmeup\Test\getConnection());
+        $repo->getContainerBySlug('box-1');
+        $this->assertTrue(false, 'Exception should have been thrown.');
+    }
+
+    public function testGetBySlugWithItems()
+    {
+        $container = $this->repo->getContainerBySlug('box-1', ContainerRepository::CONT_INCLUDE_ITEMS);
+        $this->assertCount(2, $container);
+        $this->assertEquals(2, $container['total_items']);
+    }
+
+    /**
+     * @expectedException LogicException
+     */
+    public function testGetBySlugMissingDependencyWithOption()
+    {
+        $repo = new ContainerRepository(\Boxmeup\Test\getConnection(), [
+            'user' => $this->user
+        ]);
+        $repo->getContainerBySlug('box-1', ContainerRepository::CONT_INCLUDE_ITEMS);
+        $this->assertTrue(false, 'Exception should have been thrown.');
+    }
 }

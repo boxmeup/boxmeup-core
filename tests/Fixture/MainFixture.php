@@ -33,8 +33,25 @@ class MainFixture implements FixtureInterface
                     'created' => '2014-01-01 00:00:00',
                     'modified' => '2014-01-01 00:00:00'
                 ]
+            ],
+            'container_items' => [
+                [
+                    'id' => 1,
+                    'container_id' => 1,
+                    'body' => 'item 1',
+                    'quantity' => 1,
+                    'created' => '2014-01-01 00:00:00',
+                    'modified' => '2014-01-01 00:00:00'
+                ],
+                [
+                    'id' => 2,
+                    'container_id' => 1,
+                    'body' => 'item 2',
+                    'quantity' => 2,
+                    'created' => '2014-01-01 00:00:00',
+                    'modified' => '2014-01-01 00:00:00'
+                ]
             ]
         ];
     }
-
 }

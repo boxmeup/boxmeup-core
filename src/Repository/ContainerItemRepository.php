@@ -74,4 +74,31 @@ class ContainerItemRepository
         return $parent;
     }
 
+    /**
+     * Adds container items to the container collection.
+     *
+     * Return the total number of items in this container (despite limit).
+     *
+     * @param Container $container
+     * @param integer $limit Item limit to attach to container
+     * @todo Implement limit
+     * @return integer
+     */
+    public function getItemsByContainer(Container $container, $limit = -1)
+    {
+        $stmt = $this->db->executeQuery(
+            '
+                select ci.* from container_items ci
+                where ci.container_id = ?
+            ',
+            [$container['id']],
+            [\PDO::PARAM_INT]
+        );
+        while ($row = $stmt->fetch()) {
+            $container->add(new ContainerItem($row));
+        }
+
+        // @todo replace with real limit
+        return count($container);
+    }
 }
