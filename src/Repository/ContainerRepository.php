@@ -30,15 +30,15 @@ class ContainerRepository
     }
 
     /**
-	 * Get a paginated container collection.
-	 *
-	 * The results will contain data which will be an instance of Boxmeup\Container\ContainerCollection
-	 * and total which is the total number of containers available.
-	 *
-	 * @param  User $user
-	 * @param  integer $offset
-	 * @return array
-	 */
+     * Get a paginated container collection.
+     *
+     * The results will contain data which will be an instance of Boxmeup\Container\ContainerCollection
+     * and total which is the total number of containers available.
+     *
+     * @param  User $user
+     * @param  integer $offset
+     * @return array
+     */
     public function getContainersByUser(User $user, $offset = 0)
     {
         $collection = new ContainerCollection();
@@ -61,11 +61,11 @@ class ContainerRepository
     }
 
     /**
-	 * Get the total number of containers
-	 *
-	 * @param User $user
-	 * @return integer
-	 */
+     * Get the total number of containers
+     *
+     * @param User $user
+     * @return integer
+     */
     public function getTotalContainersByUser(User $user)
     {
         $stmt = $this->getListStatement(['aggregate' => true]);
@@ -76,14 +76,14 @@ class ContainerRepository
     }
 
     /**
-	 * Retrieve a container object based on slug.
-	 *
-	 * @param string $slug
-	 * @return Container
-	 * @todo Retrieve location objects
-	 * @throws \LogicException If the user repository is not attached as a dependency
-	 * @throws Boxmeup\Exception\NotFoundException
-	 */
+     * Retrieve a container object based on slug.
+     *
+     * @param string $slug
+     * @return Container
+     * @todo Retrieve location objects
+     * @throws \LogicException If the user repository is not attached as a dependency
+     * @throws Boxmeup\Exception\NotFoundException
+     */
     public function getContainerBySlug($slug, $options = 0)
     {
         if (!isset($this->repos['user']) || !$this->repos['user'] instanceof UserRepository) {
@@ -117,22 +117,22 @@ class ContainerRepository
     }
 
     /**
-	 * Save a container to persistent storage.
-	 *
-	 * @param Container $container
-	 * @return void
-	 */
+     * Save a container to persistent storage.
+     *
+     * @param Container $container
+     * @return void
+     */
     public function save(Container $container)
     {
         $this->{$container['id'] ? 'update' : 'create'}($container);
     }
 
     /**
-	 * Remove a container and all it's items.
-	 *
-	 * @param Container $container
-	 * @return void
-	 */
+     * Remove a container and all it's items.
+     *
+     * @param Container $container
+     * @return void
+     */
     public function remove(Container $container)
     {
         $this->db->transactional(function ($db) use ($container) {
@@ -142,12 +142,12 @@ class ContainerRepository
     }
 
     /**
-	 * Create a container.
-	 *
-	 * @param Container $container
-	 * @return void
-	 * @throws DomainException If the user is unable to create any more containers.
-	 */
+     * Create a container.
+     *
+     * @param Container $container
+     * @return void
+     * @throws DomainException If the user is unable to create any more containers.
+     */
     protected function create(Container $container)
     {
         if ($this->getTotalContainersByUser($container['user']) >= ContainerSpecification::factory()->getLimit($container['user'])) {
@@ -159,26 +159,26 @@ class ContainerRepository
     }
 
     /**
-	 * Update a container.
-	 *
-	 * @param Container $container
-	 * @return void
-	 * @todo implement
-	 */
+     * Update a container.
+     *
+     * @param Container $container
+     * @return void
+     * @todo implement
+     */
     protected function update(Container $container)
     {
         throw new \DomainException('Not implemented.');
     }
 
     /**
-	 * Get a unique slug value for provided slug.
-	 *
-	 * If the slug exists, it will return a new slug with a -\d with the maximum value of \d
-	 * in existance.
-	 *
-	 * @param string $slug
-	 * @return string
-	 */
+     * Get a unique slug value for provided slug.
+     *
+     * If the slug exists, it will return a new slug with a -\d with the maximum value of \d
+     * in existance.
+     *
+     * @param string $slug
+     * @return string
+     */
     protected function getUniqueSlug($slug)
     {
         $incrementPosition = strlen($slug) + 2; // Mysql starts at the position of the first letter.
@@ -198,10 +198,10 @@ class ContainerRepository
     }
 
     /**
-	 * Prepares a statement for querying a list of containers.
-	 *
-	 * @return \Doctrine\DBAL\Statement
-	 */
+     * Prepares a statement for querying a list of containers.
+     *
+     * @return \Doctrine\DBAL\Statement
+     */
     protected function getListStatement(array $options = [])
     {
         $sql = 'select %s from containers where user_id = :user_id';

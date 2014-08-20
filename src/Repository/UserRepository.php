@@ -9,29 +9,29 @@ use Boxmeup\Exception\NotFoundException;
 class UserRepository
 {
     /**
-	 * Database connection.
-	 *
-	 * @var Doctrine\DBAL\Connection
-	 */
+     * Database connection.
+     *
+     * @var Doctrine\DBAL\Connection
+     */
     protected $db;
 
     /**
-	 * Constructor.
-	 *
-	 * @param Connection $db
-	 */
+     * Constructor.
+     *
+     * @param Connection $db
+     */
     public function __construct(Connection $db)
     {
         $this->db = $db;
     }
 
     /**
-	 * Retrieve a user by an ID.
-	 *
-	 * @param  string $id
-	 * @return User
-	 * @throws Boxmeup\Exception\NotFoundException
-	 */
+     * Retrieve a user by an ID.
+     *
+     * @param  string $id
+     * @return User
+     * @throws Boxmeup\Exception\NotFoundException
+     */
     public function byId($id)
     {
         try {
@@ -42,12 +42,12 @@ class UserRepository
     }
 
     /**
-	 * Retrieve a user by an email address.
-	 *
-	 * @param  string $email
-	 * @return User
-	 * @throws Boxmeup\Exception\NotFoundException
-	 */
+     * Retrieve a user by an email address.
+     *
+     * @param  string $email
+     * @return User
+     * @throws Boxmeup\Exception\NotFoundException
+     */
     public function byEmail($email)
     {
         try {
@@ -58,23 +58,23 @@ class UserRepository
     }
 
     /**
-	 * Persist a user to storage.
-	 *
-	 * @param User $user
-	 * @return mixed
-	 */
+     * Persist a user to storage.
+     *
+     * @param User $user
+     * @return mixed
+     */
     public function save(User $user)
     {
         return $this->{$user['id'] ? 'update' : 'create'}($user);
     }
 
     /**
-	 * Retrieve a user based on email or ID.
-	 *
-	 * @param string $value
-	 * @return User
-	 * @throws Boxmeup\Exception\NotFoundException
-	 */
+     * Retrieve a user based on email or ID.
+     *
+     * @param string $value
+     * @return User
+     * @throws Boxmeup\Exception\NotFoundException
+     */
     protected function byEmailOrId($value)
     {
         $stmt = $this->db->executeQuery(
@@ -90,22 +90,22 @@ class UserRepository
     }
 
     /**
-	 * Create a new user.
-	 *
-	 * @param User $user
-	 * @return mixed
-	 */
+     * Create a new user.
+     *
+     * @param User $user
+     * @return mixed
+     */
     protected function create(User $user)
     {
         throw new \DomainException('Not implemented yet.');
     }
 
     /**
-	 * Update a user.
-	 *
-	 * @param User $user
-	 * @return mixed
-	 */
+     * Update a user.
+     *
+     * @param User $user
+     * @return mixed
+     */
     protected function update(User $user)
     {
         $qb = $this->db->createQueryBuilder();

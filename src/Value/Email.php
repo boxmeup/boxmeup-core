@@ -10,11 +10,11 @@ use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 class Email extends ValueObject
 {
     /**
-	 * Constructor.
-	 *
-	 * @param string $address
-	 * @throws Boxmeup\Exception\InvalidParameterException
-	 */
+     * Constructor.
+     *
+     * @param string $address
+     * @throws Boxmeup\Exception\InvalidParameterException
+     */
     public function __construct($address)
     {
         $violations = Validation::createValidator()->validateValue($address, new EmailConstraint());
@@ -25,13 +25,12 @@ class Email extends ValueObject
     }
 
     /**
-	 * Email address.
-	 *
-	 * @return string
-	 */
+     * Email address.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->data['value'];
     }
-
 }

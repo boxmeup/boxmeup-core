@@ -15,21 +15,21 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
     use DefaultEntitySchemaValidate, SlugifyTrait;
 
     /**
-	 * Add a ContainerItem to the Container collection.
-	 *
-	 * @param ContainerItem $item
-	 * @return void
-	 */
+     * Add a ContainerItem to the Container collection.
+     *
+     * @param ContainerItem $item
+     * @return void
+     */
     public function add(ContainerItem $item)
     {
         $this->getItems()[] = $item;
     }
 
     /**
-	 * Handle slugifying the object if the name is set.
-	 *
-	 * @param string $name
-	 */
+     * Handle slugifying the object if the name is set.
+     *
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->data['name'] = $name;
@@ -39,10 +39,10 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
     }
 
     /**
-	 * Get total number of items in the container.
-	 *
-	 * @return integer
-	 */
+     * Get total number of items in the container.
+     *
+     * @return integer
+     */
     public function getItemCount()
     {
         $total = 0;
@@ -54,10 +54,10 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
     }
 
     /**
-	 * Required schema for containers.
-	 *
-	 * @return string[]
-	 */
+     * Required schema for containers.
+     *
+     * @return string[]
+     */
     public function getRequiredSchema()
     {
         return [
@@ -66,11 +66,11 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
     }
 
     /**
-	 * Serialize to array specific to schema formatting.
-	 *
-	 * @return array
-	 * @todo implement location.
-	 */
+     * Serialize to array specific to schema formatting.
+     *
+     * @return array
+     * @todo implement location.
+     */
     public function schemaSerialize()
     {
         $out = [

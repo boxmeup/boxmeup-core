@@ -21,8 +21,8 @@ class UserRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     }
 
     /**
-	 * @expectedException Boxmeup\Exception\NotFoundException
-	 */
+     * @expectedException Boxmeup\Exception\NotFoundException
+     */
     public function testNotFoundById()
     {
         $this->repo->byId('nonexistant');

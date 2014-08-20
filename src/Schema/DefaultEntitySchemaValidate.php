@@ -2,18 +2,18 @@
 
 namespace Boxmeup\Schema;
 
-use \Boxmeup\Schema\SchemaValidatable,
-    \Boxmeup\Exception\InvalidSchemaException,
-    \Boxmeup\Exception\InternalException;
+use \Boxmeup\Schema\SchemaValidatable;
+use \Boxmeup\Exception\InvalidSchemaException;
+use \Boxmeup\Exception\InternalException;
 
 trait DefaultEntitySchemaValidate
 {
     /**
-	 * Verify required schema.
-	 *
-	 * @param array $data If not set, uses the data from the entity.
-	 * @return boolean
-	 */
+     * Verify required schema.
+     *
+     * @param array $data If not set, uses the data from the entity.
+     * @return boolean
+     */
     public function verifyRequiredSchema(array $data = [])
     {
         if (!$this instanceof SchemaValidatable) {
@@ -23,5 +23,4 @@ trait DefaultEntitySchemaValidate
 
         return empty($diff);
     }
-
 }

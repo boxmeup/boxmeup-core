@@ -13,8 +13,8 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * @expectedException Boxmeup\Exception\InvalidParameterException
-	 */
+     * @expectedException Boxmeup\Exception\InvalidParameterException
+     */
     public function testInvalidEmail()
     {
         $email = new Email('invalid');

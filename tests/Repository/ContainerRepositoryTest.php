@@ -65,8 +65,8 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     }
 
     /**
-	 * @expectedException \DomainException
-	 */
+     * @expectedException \DomainException
+     */
     public function testCreateLimit()
     {
         $container = new Container([
@@ -82,8 +82,8 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     }
 
     /**
-	 * @expectedException DomainException
-	 */
+     * @expectedException DomainException
+     */
     public function testUpdate()
     {
         $container = new Container(['id' => 1, 'name' => 'Test Update']);
@@ -101,8 +101,8 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     }
 
     /**
-	 * @todo Add tests covering the removal of items as well.
-	 */
+     * @todo Add tests covering the removal of items as well.
+     */
     public function testDelete()
     {
         $container = $this->repo->getContainerBySlug('box-1');

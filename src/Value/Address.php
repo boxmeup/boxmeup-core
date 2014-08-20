@@ -4,36 +4,35 @@ namespace Boxmeup\Value;
 
 use \Cjsaylor\Domain\ReadAccessable;
 
-class Address implement \ArrayAccess
+class Address implements \ArrayAccess
 {
     use ReadAccessable, DefaultEntitySchemaValidate;
 
     /**
-	 * Address.
-	 *
-	 * @var array
-	 */
+     * Address.
+     *
+     * @var array
+     */
     protected $data = [];
 
     /**
-	 * Constructor.
-	 *
-	 * @param string $address
-	 * @todo Add proper attributes and validation.
-	 */
+     * Constructor.
+     *
+     * @param string $address
+     * @todo Add proper attributes and validation.
+     */
     public function __construct($address)
     {
         $this->data['address'] = $address;
     }
 
     /**
-	 * String representation.
-	 *
-	 * @return string
-	 */
+     * String representation.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->data['address'];
     }
-
 }

@@ -22,18 +22,18 @@ class ContainerItemRepository
     }
 
     /**
-	 * Retrieve the total number of containers
-	 *
-	 * @param User $user
-	 * @return integer
-	 */
+     * Retrieve the total number of containers
+     *
+     * @param User $user
+     * @return integer
+     */
     public function getTotalItemsByUser(User $user)
     {
         $stmt = $this->db->executeQuery(
             '
-				select count(*) as total from container_items ci
-				inner join containers c on c.id = ci.container_id
-				where c.user_id = ?',
+                select count(*) as total from container_items ci
+                inner join containers c on c.id = ci.container_id
+                where c.user_id = ?',
             [$user['id']],
             [\PDO::PARAM_INT]
         );
@@ -42,22 +42,22 @@ class ContainerItemRepository
     }
 
     /**
-	 * Retrieve an generic container of recent items.
-	 *
-	 * @param User $user
-	 * @return Container
-	 */
+     * Retrieve an generic container of recent items.
+     *
+     * @param User $user
+     * @return Container
+     */
     public function getRecentItemsByUser(User $user)
     {
         $parent = new Container(['name' => 'Recent']);
         $stmt = $this->db->executeQuery(
             '
-				select ci.*, c.name as container_name, c.slug as container_slug from container_items ci
-				inner join containers c on c.id = ci.container_id
-				where c.user_id = ?
-				order by ci.modified desc
-				limit 0, ?
-			',
+                select ci.*, c.name as container_name, c.slug as container_slug from container_items ci
+                inner join containers c on c.id = ci.container_id
+                where c.user_id = ?
+                order by ci.modified desc
+                limit 0, ?
+            ',
             [$user['id'], static::LIMIT_RECENT],
             [\PDO::PARAM_INT, \PDO::PARAM_INT]
         );

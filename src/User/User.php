@@ -2,11 +2,11 @@
 
 namespace Boxmeup\User;
 
-use \Cjsaylor\Domain\Entity,
-    \Boxmeup\Schema\SchemaValidatable,
-    \Boxmeup\Schema\DefaultEntitySchemaValidate,
-    \Boxmeup\Value\Email,
-    \Boxmeup\Value\Role;
+use \Cjsaylor\Domain\Entity;
+use \Boxmeup\Schema\SchemaValidatable;
+use \Boxmeup\Schema\DefaultEntitySchemaValidate;
+use \Boxmeup\Value\Email;
+use \Boxmeup\Value\Role;
 
 class User extends Entity implements SchemaValidatable
 {
@@ -15,19 +15,19 @@ class User extends Entity implements SchemaValidatable
     }
 
     /**
-	 * A list of allowable fields to be updated.
-	 *
-	 * @var array
-	 */
+     * A list of allowable fields to be updated.
+     *
+     * @var array
+     */
     protected $updatableFields = ['email', 'password', 'modified'];
 
     /**
-	 * Initialization of container item entity.
-	 *
-	 * @param array $initialData
-	 * @return void
-	 * @throws Boxmeup\Exception\InvalidSchemaException
-	 */
+     * Initialization of container item entity.
+     *
+     * @param array $initialData
+     * @return void
+     * @throws Boxmeup\Exception\InvalidSchemaException
+     */
     public function initialize(array $initialData = [])
     {
         if (!empty($initialData['email']) && is_string($initialData['email'])) {
@@ -42,10 +42,10 @@ class User extends Entity implements SchemaValidatable
     }
 
     /**
-	 * Setter callback to message email into email object.
-	 *
-	 * @param mixed $email
-	 */
+     * Setter callback to message email into email object.
+     *
+     * @param mixed $email
+     */
     public function setEmail($email)
     {
         if (is_string($email)) {
@@ -55,11 +55,11 @@ class User extends Entity implements SchemaValidatable
     }
 
     /**
-	 * Verify schema.
-	 *
-	 * @param array $data
-	 * @return boolean
-	 */
+     * Verify schema.
+     *
+     * @param array $data
+     * @return boolean
+     */
     public function verifyRequiredSchema(array $data = [])
     {
         $data = $data ?: $this->toArray();
@@ -68,10 +68,10 @@ class User extends Entity implements SchemaValidatable
     }
 
     /**
-	 * Schema for containers items.
-	 *
-	 * @return array
-	 */
+     * Schema for containers items.
+     *
+     * @return array
+     */
     public function getRequiredSchema()
     {
         return [
@@ -80,30 +80,30 @@ class User extends Entity implements SchemaValidatable
     }
 
     /**
-	 * Get a list of fields allowed to be updated.
-	 *
-	 * @return array
-	 */
+     * Get a list of fields allowed to be updated.
+     *
+     * @return array
+     */
     public function getUpdatableFields()
     {
         return $this->updatableFields;
     }
 
     /**
-	 * String representation.
-	 *
-	 * @return string
-	 */
+     * String representation.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this['email'];
     }
 
     /**
-	 * Array representation of the user.
-	 *
-	 * @return array
-	 */
+     * Array representation of the user.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $out = parent::toArray();
@@ -112,5 +112,4 @@ class User extends Entity implements SchemaValidatable
 
         return $out;
     }
-
 }

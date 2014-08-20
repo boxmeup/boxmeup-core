@@ -15,11 +15,11 @@ class Specification
     ];
 
     /**
-	 * Get the limit of locations a user is allowed to have.
-	 *
-	 * @param User $user
-	 * @return integer
-	 */
+     * Get the limit of locations a user is allowed to have.
+     *
+     * @param User $user
+     * @return integer
+     */
     public function getLimit(User $user)
     {
         return $this->limits[(string) $user['role']];

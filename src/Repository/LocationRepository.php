@@ -17,11 +17,11 @@ class LocationRepository
     }
 
     /**
-	 * Retrieve the total number of locations a user currently has.
-	 *
-	 * @param User $user
-	 * @return integer
-	 */
+     * Retrieve the total number of locations a user currently has.
+     *
+     * @param User $user
+     * @return integer
+     */
     public function getTotalLocationsByUser(User $user)
     {
         return (int) $this->db->executeQuery(
@@ -30,5 +30,4 @@ class LocationRepository
             [\PDO::PARAM_INT]
         )->fetch()['total'];
     }
-
 }

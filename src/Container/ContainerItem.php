@@ -2,21 +2,21 @@
 
 namespace Boxmeup\Container;
 
-use \Cjsaylor\Domain\Entity,
-    \Boxmeup\Schema\SchemaValidatable,
-    \Boxmeup\Schema\DefaultEntitySchemaValidate;
+use \Cjsaylor\Domain\Entity;
+use \Boxmeup\Schema\SchemaValidatable;
+use \Boxmeup\Schema\DefaultEntitySchemaValidate;
 
 class ContainerItem extends Entity implements SchemaValidatable
 {
     use DefaultEntitySchemaValidate;
 
     /**
-	 * Initialization of container item entity.
-	 *
-	 * @param array $initialData
-	 * @return void
-	 * @throws Boxmeup\Exception\InvalidSchemaException
-	 */
+     * Initialization of container item entity.
+     *
+     * @param array $initialData
+     * @return void
+     * @throws Boxmeup\Exception\InvalidSchemaException
+     */
     public function initialize(array $initialData = [])
     {
         if (!array_key_exists('quantity', $initialData)) {
@@ -28,15 +28,14 @@ class ContainerItem extends Entity implements SchemaValidatable
     }
 
     /**
-	 * Schema for containers items.
-	 *
-	 * @return string[]
-	 */
+     * Schema for containers items.
+     *
+     * @return string[]
+     */
     public function getRequiredSchema()
     {
         return [
             'body', 'quantity'
         ];
     }
-
 }
