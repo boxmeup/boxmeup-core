@@ -7,7 +7,7 @@ trait FactoryTrait
     /**
      * Factory method for statically intantiating a class.
      *
-     * @return mixed
+     * @return FactoryTrait
      */
     public static function factory()
     {
