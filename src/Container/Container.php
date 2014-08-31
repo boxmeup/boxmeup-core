@@ -70,6 +70,11 @@ class Container extends CollectionEntity implements
         ];
     }
 
+    /**
+     * Allowable attributes for this entity.
+     *
+     * @return array
+     */
     public function concreteAttributes()
     {
         return [

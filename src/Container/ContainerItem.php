@@ -2,13 +2,15 @@
 
 namespace Boxmeup\Container;
 
-use \Cjsaylor\Domain\Entity;
-use \Boxmeup\Schema\SchemaValidatable;
-use \Boxmeup\Schema\DefaultEntitySchemaValidate;
+use Cjsaylor\Domain\Entity;
+use Cjsaylor\Domain\Behavior\PropertyLimitable;
+use Cjsaylor\Domain\Behavior\PropertyLimitTrait;
+use Boxmeup\Schema\SchemaValidatable;
+use Boxmeup\Schema\DefaultEntitySchemaValidate;
 
-class ContainerItem extends Entity implements SchemaValidatable
+class ContainerItem extends Entity implements SchemaValidatable, PropertyLimitable
 {
-    use DefaultEntitySchemaValidate;
+    use DefaultEntitySchemaValidate, PropertyLimitTrait;
 
     /**
      * Initialization of container item entity.
@@ -36,6 +38,23 @@ class ContainerItem extends Entity implements SchemaValidatable
     {
         return [
             'body', 'quantity'
+        ];
+    }
+
+    /**
+     * Allowable attributes for this entity.
+     *
+     * @return array
+     */
+    public function concreteAttributes()
+    {
+        return [
+            'id',
+            'container',
+            'body',
+            'quantity',
+            'created',
+            'modified'
         ];
     }
 }
