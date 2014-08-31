@@ -110,7 +110,7 @@ class ContainerRepository
         $container = new Container($qb->execute()->fetch());
         $container['user'] = $this->repos['user']->byId($container['user_id']);
         if ($options & static::CONT_INCLUDE_ITEMS) {
-            $container['total_items'] = $this->repos['container_item']->getItemsByContainer($container);
+            $container['container_item_count'] = $this->repos['container_item']->getItemsByContainer($container);
         }
 
         return $container;

@@ -126,7 +126,7 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     {
         $container = $this->repo->getContainerBySlug('box-1', ContainerRepository::CONT_INCLUDE_ITEMS);
         $this->assertCount(2, $container);
-        $this->assertEquals(2, $container['total_items']);
+        $this->assertEquals(2, $container['container_item_count']);
     }
 
     /**
