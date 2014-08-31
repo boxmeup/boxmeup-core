@@ -107,8 +107,9 @@ class ContainerRepository
         if (empty($result)) {
             throw new NotFoundException('Container not found.');
         }
-        $container = new Container($qb->execute()->fetch());
-        $container['user'] = $this->repos['user']->byId($container['user_id']);
+        $result = $qb->execute()->fetch();
+        $container = new Container($result);
+        $container['user'] = $this->repos['user']->byId($result['user_id']);
         if ($options & static::CONT_INCLUDE_ITEMS) {
             $container['container_item_count'] = $this->repos['container_item']->getItemsByContainer($container);
         }

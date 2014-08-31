@@ -3,6 +3,8 @@
 namespace Boxmeup\Container;
 
 use Cjsaylor\Domain\CollectionEntity;
+use Cjsaylor\Domain\Behavior\PropertyLimitable;
+use Cjsaylor\Domain\Behavior\PropertyLimitTrait;
 use Boxmeup\Schema\SchemaValidatable;
 use Boxmeup\Schema\SchemaSerializable;
 use Boxmeup\Schema\DefaultEntitySchemaValidate;
@@ -10,9 +12,12 @@ use Boxmeup\Util\SlugifyTrait;
 use Boxmeup\User\User;
 use Boxmeup\Location\Location;
 
-class Container extends CollectionEntity implements SchemaValidatable, SchemaSerializable
+class Container extends CollectionEntity implements
+    SchemaValidatable,
+    SchemaSerializable,
+    PropertyLimitable
 {
-    use DefaultEntitySchemaValidate, SlugifyTrait;
+    use DefaultEntitySchemaValidate, SlugifyTrait, PropertyLimitTrait;
 
     /**
      * Add a ContainerItem to the Container collection.
@@ -62,6 +67,20 @@ class Container extends CollectionEntity implements SchemaValidatable, SchemaSer
     {
         return [
             'user', 'name'
+        ];
+    }
+
+    public function concreteAttributes()
+    {
+        return [
+            'id',
+            'user',
+            'location',
+            'name',
+            'slug',
+            'container_item_count',
+            'created',
+            'modified'
         ];
     }
 
