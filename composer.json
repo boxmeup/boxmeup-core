@@ -12,15 +12,15 @@
     "require": {
         "php": ">=5.4",
         "cjsaylor/libdomain": "~2.0.0",
+        "doctrine/dbal": "~2.2.0",
         "symfony/validator": "~2.5.2",
-        "cocur/slugify": "v0.8",
-        "roave/security-advisories": "dev-master"
+        "cocur/slugify": "v0.8"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0.0",
         "phpunit/dbunit": "1.3.*@dev",
-        "doctrine/dbal": "~2.2.0",
-        "squizlabs/php_codesniffer": "1.5.4"
+        "squizlabs/php_codesniffer": "1.5.4",
+        "roave/security-advisories": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
