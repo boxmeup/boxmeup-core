@@ -13,7 +13,8 @@
         "php": ">=5.4",
         "cjsaylor/libdomain": "~2.0.0",
         "symfony/validator": "~2.5.2",
-        "cocur/slugify": "v0.8"
+        "cocur/slugify": "v0.8",
+        "roave/security-advisories": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0.0",
