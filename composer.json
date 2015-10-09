@@ -11,8 +11,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4",
-        "cjsaylor/libdomain": "~2.0.0",
-        "doctrine/dbal": "~2.2.0",
+        "cjsaylor/libdomain": "~3.0.0",
+        "doctrine/dbal": "~2.5.0",
         "symfony/validator": "~2.5.2",
         "cocur/slugify": "v0.8"
     },
