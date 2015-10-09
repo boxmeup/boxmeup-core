@@ -88,14 +88,17 @@ class ContainerItemRepository
     {
         $stmt = $this->db->executeQuery(
             '
-                select ci.* from container_items ci
+                select ci.id, body, quantity, created, modified
+                from container_items ci
                 where ci.container_id = ?
             ',
             [$container['id']],
             [\PDO::PARAM_INT]
         );
         while ($row = $stmt->fetch()) {
-            $container->add(new ContainerItem($row));
+            $item = new ContainerItem($row);
+            $item->container = $container;
+            $container->add($item);
         }
 
         // @todo replace with real limit
