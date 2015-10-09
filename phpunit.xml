@@ -25,9 +25,9 @@
 		</whitelist>
 	</filter>
 	<php>
-		<var name="host" value="localhost" />
+		<var name="host" value="boxmeupapp.dev" />
 		<var name="user" value="root" />
-		<var name="password" value="root" />
+		<var name="password" value="supersecret" />
 		<var name="name" value="boxmeup_test" />
 	</php>
 </phpunit>
