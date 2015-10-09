@@ -3,6 +3,7 @@
 namespace Boxmeup\Repository;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Boxmeup\User\User;
 use Boxmeup\Exception\NotFoundException;
 
@@ -35,7 +36,9 @@ class UserRepository
     public function byId($id)
     {
         try {
-            return $this->byEmailOrId($id);
+            $qb = $this->db->createQueryBuilder();
+            $qb->where('id = ' . $qb->createPositionalParameter($id));
+            return $this->byEmailOrId($qb);
         } catch (NotFoundException $e) {
             throw new NotFoundException('User not found by provided ID.');
         }
@@ -51,7 +54,9 @@ class UserRepository
     public function byEmail($email)
     {
         try {
-            return $this->byEmailOrId($email);
+            $qb = $this->db->createQueryBuilder();
+            $qb->where('email = ' . $qb->createPositionalParameter($email));
+            return $this->byEmailOrId($qb);
         } catch (NotFoundException $e) {
             throw new NotFoundException('User not found by provided email.');
         }
@@ -71,18 +76,17 @@ class UserRepository
     /**
      * Retrieve a user based on email or ID.
      *
-     * @param string $value
+     * @param \Doctrine\DBAL\Query\QueryBuilder $queryBuilder Should contain the where clause attached.
      * @return User
      * @throws Boxmeup\Exception\NotFoundException
      */
-    protected function byEmailOrId($value)
+    private function byEmailOrId(QueryBuilder $queryBuilder)
     {
-        $stmt = $this->db->executeQuery(
-            'SELECT * FROM users WHERE id = :value OR email = :value',
-            compact('value')
-        );
+        $queryBuilder
+            ->select('id', 'email', 'password', 'uuid', 'reset_password', 'created', 'modified')
+            ->from('users');
 
-        if (!$user = $stmt->fetch()) {
+        if (!$user = $queryBuilder->execute()->fetch()) {
             throw new NotFoundException('User not found by provided email or ID.');
         }
 
