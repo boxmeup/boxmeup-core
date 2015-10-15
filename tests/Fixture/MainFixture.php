@@ -32,6 +32,16 @@ class MainFixture implements FixtureInterface
                     'container_item_count' => 1,
                     'created' => '2014-01-01 00:00:00',
                     'modified' => '2014-01-01 00:00:00'
+                ],
+                [
+                    'id' => 1000,
+                    'user_id' => 1,
+                    'uuid' => 'deprecated',
+                    'name' => 'Box 10',
+                    'slug' => 'box-10',
+                    'container_item_count' => 0,
+                    'created' => '2015-01-01 00:00:00',
+                    'modified' => '2015-01-01 00:00:00'
                 ]
             ],
             'container_items' => [

@@ -26,7 +26,7 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
     public function testGetTotalContainersByUser()
     {
         $result = $this->repo->getTotalContainersByUser($this->user->byId(1));
-        $this->assertEquals(1, $result);
+        $this->assertEquals(2, $result);
     }
 
     public function testCreate()
@@ -62,6 +62,17 @@ class ContainerRepositoryTest extends \Boxmeup\Test\DatabaseTestCase
         $this->repo->save($container);
         $this->assertNotEmpty($container['id']);
         $this->assertEquals('test-create-1-1', $container['slug']);
+    }
+
+    public function testIntegerCastOfUniqueSlugCreation()
+    {
+        $container = new Container([
+            'user' => $this->user->byId(1),
+            'name' => 'Box',
+            'slug' => 'box'
+        ]);
+        $this->repo->save($container);
+        $this->assertEquals('box-11', $container['slug']);
     }
 
     /**
