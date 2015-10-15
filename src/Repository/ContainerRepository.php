@@ -186,7 +186,7 @@ class ContainerRepository
         $exactWrap = sprintf('^%s$', $slug);
         $incrementWrap = sprintf('^%s-[0-9]+$', $slug);
         $stmt = $this->db->executeQuery(
-            'select max(substring(slug from ?)) as increment from containers where slug regexp ? or slug regexp ?',
+            'select max(cast(substring(slug from ?) as unsigned)) as increment from containers where slug regexp ? or slug regexp ?',
             [$incrementPosition, $exactWrap, $incrementWrap],
             [\PDO::PARAM_INT]
         );
